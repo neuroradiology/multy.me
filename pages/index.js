@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Layout from "../components/Layout";
-import Welcome from "../components/Welcome";
+import URLs from "../components/URLs";
 
 export default function Home() {
   return (
@@ -12,7 +12,7 @@ export default function Home() {
       </Head>
       <div>
         <div className='py-20 font-main'>
-          <Welcome />
+          <URLs />
         </div>
       </div>
     </Layout>
