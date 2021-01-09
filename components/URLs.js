@@ -10,7 +10,7 @@ export default function URLs() {
 
     axios
       .post("/api/List", { urls: ArrayofURLs, name: name })
-      .then((result) => setShortURL(`https://www.multy.me/${result.data.uid}`))
+      .then((result) => setShortURL(`https://multy.me/${result.data.uid}`))
       .catch((err) => console.log(err));
   };
   return (
