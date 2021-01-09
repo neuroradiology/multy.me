@@ -7,11 +7,14 @@ const List = ({ result }) => {
     return (
       <Layout>
         <h2 className='text-2xl'>{result[0].name}</h2>
-        <div>
-          {result[0].urls.map((el, index) => (
-            <div key={index}>{el}</div>
-          ))}
-        </div>
+
+        {result[0].urls.map((el, index) => (
+          <div key={index}>
+            <a href={el} className="text-blue-600 hover:text-blue-800" >
+              {el}
+            </a>
+          </div>
+        ))}
       </Layout>
     );
   } else {

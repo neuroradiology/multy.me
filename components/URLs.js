@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import Clipboard from "react-clipboard.js";
 
 export default function URLs() {
   const [shortURL, setShortURL] = useState(null);
@@ -35,11 +36,26 @@ export default function URLs() {
             name='name'
             placeholder='Enter a name for your list (Optional)'></input>
           <button
-            className='bg-indigo-900 rounded-md p-2 text-xl'
+            className='bg-indigo-900 hover:bg-indigo-600 rounded-md p-2 text-xl mb-5'
             onClick={handleURLs}>
             Short!
           </button>
-          {shortURL ? <div>This is your short URL: {shortURL}</div> : null}
+          {shortURL ? (
+            <div className='flex text-base align-middle'>
+              <input
+                className=' text-black p-2 mr-5'
+                id='yourURL'
+                size='40'
+                readOnly
+                defaultValue={shortURL}
+              />
+              
+                <Clipboard className="border-black border-solid border-0 rounded-md p-2 bg-indigo-900 hover:bg-indigo-600" data-clipboard-text={shortURL}>
+                  📋 Copy to clipboard
+                </Clipboard>
+              
+            </div>
+          ) : null}
         </div>
         <img
           className='fluid object-contain ml-auto  md:mr-8'
