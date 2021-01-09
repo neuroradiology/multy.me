@@ -1,13 +1,17 @@
 import axios from "axios";
+import { useState } from "react";
+
 export default function URLs() {
+  const [shortURL, setShortURL] = useState(null);
   const handleURLs = () => {
     const URLS = document.getElementById("urls").value;
     const name = document.getElementById("name").value;
     const ArrayofURLs = URLS.split("\n");
 
     axios
-      .post("/api/createList", { urls: ArrayofURLs, name: name })
-      .then((result) => console.log(result.data));
+      .post("/api/List", { urls: ArrayofURLs, name: name })
+      .then((result) => setShortURL(`https://www.multy.me/${result.data.uid}`))
+      .catch((err) => console.log(err));
   };
   return (
     <div className='bg-indigo-500 mx-auto lg:rounded md:px-16 md:py-8  py-4 px-8 text-2xl md:text-4xl text-white max-w-6xl'>
@@ -35,6 +39,7 @@ export default function URLs() {
             onClick={handleURLs}>
             Short!
           </button>
+          {shortURL ? <div>This is your short URL: {shortURL}</div> : null}
         </div>
         <img
           className='fluid object-contain ml-auto  md:mr-8'
