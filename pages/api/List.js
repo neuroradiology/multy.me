@@ -20,7 +20,7 @@ export default async function handler(req, res) {
 
       // For each url, check if it's a valid url, and if it is, add it to the validURLS array
       for await (const el of req.body.urls) {
-        if (validUrl.isUri(el)) {
+        if (validUrl.isWebUri(el)) {
           await urlMetadata(el)
             .then((result) => {
               validURLS.push(result);
@@ -29,7 +29,19 @@ export default async function handler(req, res) {
               console.log(err);
             });
         } else {
-          null;
+          if (el.startsWith("www.")) {
+            const httpString = "http://";
+            const newURL = httpString.concat(el);
+            if (validUrl.isWebUri(newURL)) {
+              await urlMetadata(newURL)
+                .then((result) => {
+                  validURLS.push(result);
+                })
+                .catch((err) => {
+                  console.log(err);
+                });
+            }
+          }
         }
       }
       console.log(validURLS);
