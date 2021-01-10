@@ -21,9 +21,13 @@ export default async function handler(req, res) {
       // For each url, check if it's a valid url, and if it is, add it to the validURLS array
       for await (const el of req.body.urls) {
         if (validUrl.isUri(el)) {
-          await urlMetadata(el).then((result) => {
-            validURLS.push(result);
-          });
+          await urlMetadata(el)
+            .then((result) => {
+              validURLS.push(result);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
         } else {
           null;
         }

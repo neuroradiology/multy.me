@@ -11,7 +11,7 @@ export default function Home() {
         <meta name="description" content="The multi URL shortener" />
       </Head>
       <div>
-        <div className='py-20 font-main'>
+        <div className='font-main'>
           <URLs />
         </div>
       </div>
