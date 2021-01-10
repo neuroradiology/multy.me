@@ -19,13 +19,15 @@ module.exports = {
       hd: "1920px",
     },
     fontFamily: {
-      main: ["Ubuntu"],
+      main: ["Noto Sans"],
+      title: ["IBM Plex Sans"]
     },
     extend: {
       colors: {
         gray: colors.blueGray,
         green: colors.teal,
         orange: colors.amber,
+        blue: colors.cyan,
         background: "#f8f8ff",
         colored: "#273469",
         btn: {

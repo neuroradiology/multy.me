@@ -8,7 +8,6 @@ const supabaseKey = process.env.SUPABASE_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 export default async function handler(req, res) {
-
   if (req.method === "POST") {
     if (req.body.urls) {
       // Initialize uniqueID generator and create a uid for the list
@@ -20,9 +19,11 @@ export default async function handler(req, res) {
       const result = {};
 
       // For each url, check if it's a valid url, and if it is, add it to the validURLS array
-      for (const el of req.body.urls) {
+      for await (const el of req.body.urls) {
         if (validUrl.isUri(el)) {
-          validURLS.push(el);
+          await urlMetadata(el).then((result) => {
+            validURLS.push(result);
+          });
         } else {
           null;
         }

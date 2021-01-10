@@ -3,7 +3,7 @@ import Head from "next/head";
 import { ToastContainer } from "react-toastify";
 
 const Layout = (props) => (
-  <div className='min-h-screen'>
+  <div className='min-h-screen bg-background'>
     <Head>
       <link
         rel='apple-touch-icon'
@@ -24,8 +24,9 @@ const Layout = (props) => (
       />
       <link rel='manifest' href='/site.webmanifest' />
       <link rel='mask-icon' href='/safari-pinned-tab.svg' color='#5bbad5' />
-
-      <meta name='msapplication-TileColor' content='#da532c' />
+      <link rel='shortcut icon' href='/favicon.ico' />
+      <meta name='msapplication-TileColor' content='#ffc40d' />
+      <meta name='msapplication-config' content='/browserconfig.xml' />
       <meta name='theme-color' content='#ffffff' />
     </Head>
     <NavBar />

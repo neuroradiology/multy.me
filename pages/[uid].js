@@ -6,15 +6,21 @@ const List = ({ result }) => {
   if (result.length > 0) {
     return (
       <Layout>
-        <h2 className='text-2xl'>{result[0].name}</h2>
+        <div className="bg-white w-4/6 m-auto p-5 rounded-md">
+          <h2 className='text-4xl text-center m-5 font-title'>
+            {result[0].name}
+          </h2>
 
-        {result[0].urls.map((el, index) => (
-          <div key={index}>
-            <a href={el} className="text-blue-600 hover:text-blue-800" >
-              {el}
-            </a>
+          <div className='grid grid-cols-3 m-auto w-4/5'>
+            {result[0].urls.map((el, index) => (
+              <div key={index}>
+                <a href={el.url} className='text-blue-600 hover:text-blue-800'>
+                  {el.url}
+                </a>
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
       </Layout>
     );
   } else {
