@@ -38,7 +38,7 @@ export default function URLs() {
       <div className='w-5/6 m-auto'>
         <div className='flex flex-col'>
           <h2 className='font-main my-5 flex'>
-            <Image src='/link.png' width={60} height={60} className='m-auto' />{" "}
+            <Image src='/link.png' width={60} height={60} className='m-auto object-scale-down' />{" "}
             <p className='my-auto ml-2'>
               The URL shortener for
               <span className='text-orange-400'> multiple URLs.</span>
