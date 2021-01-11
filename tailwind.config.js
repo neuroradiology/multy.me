@@ -4,6 +4,9 @@ module.exports = {
   purge: ["./components/**/*.{js,ts,jsx,tsx}", "./pages/**/*.{js,ts,jsx,tsx}"],
   darkMode: false,
   theme: {
+    maxWidth: {
+      xxs: "10rem",
+    },
     screens: {
       sm: "640px",
       // => @media (min-width: 640px) { ... }
@@ -20,7 +23,7 @@ module.exports = {
     },
     fontFamily: {
       main: ["Noto Sans"],
-      title: ["IBM Plex Sans"]
+      title: ["IBM Plex Sans"],
     },
     extend: {
       colors: {

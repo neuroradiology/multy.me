@@ -1,10 +1,10 @@
 import NavBar from "./Nav";
 import Head from "next/head";
 import { ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 
 const Layout = (props) => (
-  <div className='min-h-screen bg-background'>
+  <div className='flex flex-col h-screen justify-between bg-background'>
     <Head>
       <link
         rel='apple-touch-icon'
@@ -31,8 +31,15 @@ const Layout = (props) => (
       <meta name='theme-color' content='#ffffff' />
     </Head>
     <NavBar />
-    <div>{props.children}</div>
+    <div className='mb-auto'>{props.children}</div>
     <ToastContainer />
+    <div className='flex justify-end mr-3 mb-3'>
+      <a
+        className='max-w-xxs object-contain object-right-bottom mr-0'
+        href='https://ko-fi.com/Y8Y41LNMX'>
+        <img src='/kofi2.png' />
+      </a>
+    </div>
   </div>
 );
 
