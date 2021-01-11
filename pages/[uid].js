@@ -14,7 +14,7 @@ const List = ({ result }) => {
           <div className='flex flex-shrink flex-wrap flex-row m-auto justify-evenly'>
             {result[0].urls.map((el, index) => (
               <div key={index} className="max-w-xs py-5">
-                <a href={el.url} className='text-blue-600 hover:text-blue-800'>
+                <a href={el.url} rel="external nofollow" className='text-blue-600 hover:text-blue-800'>
                   {el.url}
                 </a>
               </div>
