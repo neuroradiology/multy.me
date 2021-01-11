@@ -46,7 +46,7 @@ export default function URLs() {
           </h2>
           <textarea
             className='text-black text-xl p-2 mb-5 flex-1 resize-none rounded-sm'
-            placeholder='One line per URL'
+            placeholder='One line per URL (Http:// or Https://...)'
             id='urls'
             name='urls'
             rows='5'></textarea>
