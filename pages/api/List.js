@@ -17,6 +17,7 @@ export default async function handler(req, res) {
       // Initialize variables
       const validURLS = [];
       const result = {};
+      let error = false;
 
       // For each url, check if it's a valid url, and if it is, add it to the validURLS array
       for await (const el of req.body.urls) {
@@ -38,7 +39,9 @@ export default async function handler(req, res) {
                   validURLS.push(result);
                 })
                 .catch((err) => {
-                  console.log(err);
+                  error = true;
+                  res.status(400);
+                  res.send(`The URL ${newURL} is invalid`, { error: 400 });
                 });
             }
           }
@@ -58,31 +61,38 @@ export default async function handler(req, res) {
         Check if the ID already exist in the database (low proba). If it is,
         generate a new uid */
 
-      if (checkID.length === 0) {
-        const { data, error } = await supabase.from("lists").insert([
-          {
-            id: uid,
-            name: result.name,
-            urls: result.validURLS,
-          },
-        ]);
-        console.log({ data, error });
-      } else {
-        console.log("uid already exist, generate a new one...");
-        uid = uidGenerator();
-        result.uid = uid;
-        const { data, error } = await supabase.from("lists").insert([
-          {
-            id: uid,
-            name: result.name,
-            urls: result.validURLS,
-          },
-        ]);
-        console.log({ data, error });
+      if (validURLS.length > 0 && !error) {
+        if (checkID.length === 0) {
+          const { data, error } = await supabase.from("lists").insert([
+            {
+              id: uid,
+              name: result.name,
+              urls: result.validURLS,
+            },
+          ]);
+          console.log({ data, error });
+        } else {
+          console.log("uid already exist, generate a new one...");
+          uid = uidGenerator();
+          result.uid = uid;
+          const { data, error } = await supabase.from("lists").insert([
+            {
+              id: uid,
+              name: result.name,
+              urls: result.validURLS,
+            },
+          ]);
+          console.log({ data, error });
+        }
       }
 
-      res.status(200);
-      res.send(result);
+      if (validURLS.length > 0) {
+        res.status(200);
+        res.send(result);
+      } else {
+        res.status(400);
+        res.send("error", { error: 400 });
+      }
     }
   }
 }

@@ -20,7 +20,18 @@ export default function URLs() {
           setShortURL(`https://multy.me/${result.data.uid}`);
           setLoading(false);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          setLoading(false);
+          toast.error(err.response.data, {
+            position: "top-center",
+            autoClose: 4000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+        });
     } else {
       toast.info("Please enter at least one URL", {
         position: "top-center",
@@ -38,7 +49,12 @@ export default function URLs() {
       <div className='w-5/6 m-auto'>
         <div className='flex flex-col'>
           <h2 className='font-main my-5 flex'>
-            <Image src='/link.png' width={60} height={60} className='m-auto object-scale-down' />{" "}
+            <Image
+              src='/link.png'
+              width={60}
+              height={60}
+              className='m-auto object-scale-down'
+            />{" "}
             <p className='my-auto ml-2'>
               The URL shortener for
               <span className='text-orange-400'> multiple URLs.</span>
@@ -85,7 +101,6 @@ export default function URLs() {
 
               <Clipboard
                 onClick={() => {
-                  console.log("test");
                   toast("📋 Copied to clipboard!", {
                     position: "top-center",
                     autoClose: 2000,
