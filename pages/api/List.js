@@ -29,7 +29,7 @@ export default async function handler(req, res) {
               console.log(err);
             });
         } else {
-          if (el.startsWith("www.")) {
+          if (!el.startsWith("http://") || !el.startsWith("https://")) {
             const httpString = "http://";
             const newURL = httpString.concat(el);
             if (validUrl.isWebUri(newURL)) {
