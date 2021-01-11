@@ -9,18 +9,29 @@ export default function URLs() {
   const [shortURL, setShortURL] = useState(null);
   const [loading, setLoading] = useState(false);
   const handleURLs = () => {
-    setLoading(true);
     const URLS = document.getElementById("urls").value;
     const name = document.getElementById("name").value;
     const ArrayofURLs = URLS.split("\n");
-
-    axios
-      .post("/api/List", { urls: ArrayofURLs, name: name })
-      .then((result) => {
-        setShortURL(`https://multy.me/${result.data.uid}`);
-        setLoading(false);
-      })
-      .catch((err) => console.log(err));
+    if (document.getElementById("urls").value) {
+      setLoading(true);
+      axios
+        .post("/api/List", { urls: ArrayofURLs, name: name })
+        .then((result) => {
+          setShortURL(`https://multy.me/${result.data.uid}`);
+          setLoading(false);
+        })
+        .catch((err) => console.log(err));
+    } else {
+      toast.info("Please enter at least one URL", {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
   };
   return (
     <div className='bg-blue-700 mx-auto mt-8 lg:rounded-sm md:px-16 md:py-8  py-4 px-8 text-2xl md:text-4xl text-white max-w-6xl'>
@@ -75,8 +86,8 @@ export default function URLs() {
               <Clipboard
                 onClick={() => {
                   console.log("test");
-                  toast("🦄 Copied to clipboard!", {
-                    position: "bottom-center",
+                  toast("📋 Copied to clipboard!", {
+                    position: "top-center",
                     autoClose: 2000,
                     hideProgressBar: false,
                     closeOnClick: true,
