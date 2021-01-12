@@ -1,12 +1,11 @@
 import Link from "next/link";
-import Image from "next/image";
 export default function Nav() {
   return (
     <nav className='font-title'>
       <div className='text-2xl text-white'>
         <Link href='/'>
           <a>
-            <Image src='/cover.png' alt='multy.me' width={250} height={103} />
+            <img src='/logo.svg' alt='multy.me' className="object-scale-down max-w-logo ml-5 mt-5"/>
           </a>
         </Link>
       </div>

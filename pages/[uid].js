@@ -6,15 +6,19 @@ const List = ({ result }) => {
   if (result.length > 0) {
     return (
       <Layout>
-        <div className="bg-white w-4/6 m-auto p-5 rounded-md">
-          <h2 className='text-4xl text-center m-5 font-title'>
+        <div className='bg-panelLight w-4/6 m-auto p-5 rounded-md shadow-sm'>
+          <img src='/smallList.png' alt='a small page' className="m-auto"/>
+          <h2 className='text-4xl text-center m-5 font-main uppercase'>
             {result[0].name}
           </h2>
 
-          <div className='flex flex-shrink flex-wrap flex-row m-auto justify-evenly'>
+          <div className='flex flex-auto flex-shrink flex-wrap flex-row m-auto justify-evenly '>
             {result[0].urls.map((el, index) => (
-              <div key={index} className="max-w-xs py-5">
-                <a href={el.url} rel="external nofollow" className='text-blue-600 hover:text-blue-800'>
+              <div key={index} className='w-auto m-5'>
+                <a
+                  href={el.url}
+                  rel='external nofollow'
+                  className='text-blue-600 hover:text-blue-800'>
                   {el.url}
                 </a>
               </div>

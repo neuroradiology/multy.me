@@ -4,9 +4,6 @@ module.exports = {
   purge: ["./components/**/*.{js,ts,jsx,tsx}", "./pages/**/*.{js,ts,jsx,tsx}"],
   darkMode: false,
   theme: {
-    maxWidth: {
-      xxs: "10rem",
-    },
     screens: {
       sm: "640px",
       // => @media (min-width: 640px) { ... }
@@ -22,20 +19,28 @@ module.exports = {
       hd: "1920px",
     },
     fontFamily: {
-      main: ["Noto Sans"],
+      main: ["Ubuntu"],
       title: ["IBM Plex Sans"],
     },
     extend: {
+      screens: {
+        '2xl': '1536px',
+      },
+      maxWidth: {
+        xxs: "10rem",
+        logo: "12rem",
+      },
       colors: {
-        gray: colors.blueGray,
-        green: colors.teal,
+        gray: colors.coolGray,
+        green: colors.green,
         orange: colors.amber,
         blue: colors.cyan,
         background: "#f8f8ff",
-        colored: "#273469",
+        panel: "#DEF2F1",
+        panelLight: "#F9FEFD",
         btn: {
-          100: "#5C70BF",
-          200: "#2A419E",
+          100: "#3AAFA9",
+          200: "#148A84",
         },
         highlight: "#09E352",
         promo: {

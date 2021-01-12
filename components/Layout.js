@@ -4,7 +4,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Layout = (props) => (
-  <div className='flex flex-col h-screen justify-between bg-background'>
+  <div className='flex flex-col h-screen justify-between bg-white'>
     <Head>
       <link
         rel='apple-touch-icon'
