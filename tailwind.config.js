@@ -28,7 +28,7 @@ module.exports = {
       },
       maxWidth: {
         xxs: "10rem",
-        logo: "12rem",
+        logo: "14rem",
       },
       colors: {
         gray: colors.coolGray,
@@ -39,7 +39,7 @@ module.exports = {
         panel: "#DEF2F1",
         panelLight: "#F9FEFD",
         btn: {
-          100: "#3AAFA9",
+          100: "#5EADA8",
           200: "#148A84",
         },
         highlight: "#09E352",

@@ -7,7 +7,7 @@ const List = ({ result }) => {
     return (
       <Layout>
         <div className='bg-panelLight w-4/6 m-auto p-5 rounded-md shadow-sm'>
-          <img src='/smallList.png' alt='a small page' className="m-auto"/>
+          <img src='/bookmark.png' alt='a small page' className="m-auto"/>
           <h2 className='text-4xl text-center m-5 font-main uppercase'>
             {result[0].name}
           </h2>
