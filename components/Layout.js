@@ -2,6 +2,7 @@ import NavBar from "./Nav";
 import Head from "next/head";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Footer from "./Footer";
 
 const Layout = (props) => (
   <div className='flex flex-col h-screen justify-between bg-white'>
@@ -33,13 +34,7 @@ const Layout = (props) => (
     <NavBar />
     <div className='mb-auto'>{props.children}</div>
     <ToastContainer />
-    <div className='flex justify-end mr-3 mb-3'>
-      <a
-        className='max-w-xxs object-contain object-right-bottom mr-0'
-        href='https://ko-fi.com/Y8Y41LNMX'>
-        <img src='/kofi2.png' />
-      </a>
-    </div>
+    <Footer />
   </div>
 );
 

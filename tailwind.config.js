@@ -28,7 +28,7 @@ module.exports = {
       },
       maxWidth: {
         xxs: "10rem",
-        logo: "12rem",
+        logo: "14rem",
       },
       colors: {
         gray: colors.coolGray,
