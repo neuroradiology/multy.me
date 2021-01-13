@@ -5,7 +5,7 @@ export default function Nav() {
       <div className='text-2xl text-white'>
         <Link href='/'>
           <a>
-            <img src='/logo.svg' alt='multy.me' className="object-scale-down max-w-logo ml-5 mt-5"/>
+            <img src='/logo.svg' alt='multy.me' className="object-scale-down max-w-logo ml-5 mt-3"/>
           </a>
         </Link>
       </div>
