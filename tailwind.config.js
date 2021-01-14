@@ -39,7 +39,7 @@ module.exports = {
         panel: "#DEF2F1",
         panelLight: "#F9FEFD",
         btn: {
-          100: "#5EADA8",
+          100: "#26968e",
           200: "#148A84",
         },
         highlight: "#09E352",

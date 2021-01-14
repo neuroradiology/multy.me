@@ -3,7 +3,7 @@ import { useState } from "react";
 import Clipboard from "react-clipboard.js";
 import Loader from "react-loader-spinner";
 import { toast } from "react-toastify";
-import Image from "next/image"
+import Image from "next/image";
 
 export default function URLs() {
   const [shortURL, setShortURL] = useState(null);
@@ -47,7 +47,13 @@ export default function URLs() {
   return (
     <div className='mt-3'>
       <div className='flex w-screen flex-wrap max-w-3xl m-auto font-light justify-center'>
-        <Image src='/bookmark.png' width={125} height={110} className='object-scale-down m-auto sm:m-0' />
+        <Image
+          src='/bookmark.png'
+          width={125}
+          height={110}
+          className='object-scale-down m-auto sm:m-0'
+          alt='Image of a bookmark'
+        />
         <p className='max-w-lg text-2xl xl:text-3xl grow my-auto ml-8'>
           Create a list of URLs, and share it with your friends with
           <span className='font-bold'> just one link!</span>
@@ -57,27 +63,32 @@ export default function URLs() {
         <div className='bg-panel shadow-md lg:rounded-md w-screen md:w-5/12 3xl:w-4/12 m-auto mt-5 p-8 md:p-8 md:pb-4 pb-4'>
           <div>
             <div className='flex flex-col xl:ml-auto'>
-              <p className='font-light mb-2'>
+              <label className='font-light flex flex-col'>
                 Create your list by adding one URL per line
-              </p>
-              <textarea
-                className='text-black text-l leading-8 p-2 mb-8 flex-1 resize-none rounded-sm shadow-sm'
-                placeholder={`For example\nhttps://www.google.com/\nhttps://www.google.fr/\nhttps://www.google.es/`}
-                id='urls'
-                name='urls'
-                rows='6'></textarea>
-              <p className='font-light mb-2'>Name your list (Optional)</p>
-              <input
-                className='text-black text-xl p-2 mb-5 box-border max-w-screen-xl rounded-sm shadow-sm'
-                size='45'
-                id='name'
-                name='name'></input>
+                <textarea
+                  className='text-black text-l leading-8 p-2 mt-2 mb-8 flex-1 resize-none rounded-sm shadow-sm'
+                  placeholder={`For example\nhttps://www.google.com/\nhttps://www.google.fr/\nhttps://www.google.es/`}
+                  id='urls'
+                  type='textarea'
+                  name='urls'
+                  rows='6'></textarea>
+              </label>
+
+              <label className='font-light flex flex-col'>
+                Name your list (Optional)
+                <input
+                  className='text-black text-xl mt-2 p-2 mb-5 box-border max-w-screen-xl rounded-sm shadow-sm'
+                  size='45'
+                  id='name'
+                  name='name'
+                  type='text'></input>
+              </label>
             </div>
           </div>
         </div>
         <div className='w-screen md:w-5/12 3xl:w-4/12  m-auto'>
           <button
-            className='bg-btn-100 hover:bg-btn-200 rounded-sm p-2 text-xl mb-5 w-full text-white shadow-sm font-bold mt-4'
+            className='bg-btn-200 hover:bg-btn-100 rounded-sm p-2 text-xl mb-5 w-full text-white shadow-sm font-bold mt-4'
             onClick={handleURLs}>
             {loading ? (
               <Loader
