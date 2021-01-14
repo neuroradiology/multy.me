@@ -3,6 +3,7 @@ import { useState } from "react";
 import Clipboard from "react-clipboard.js";
 import Loader from "react-loader-spinner";
 import { toast } from "react-toastify";
+import Image from "next/image"
 
 export default function URLs() {
   const [shortURL, setShortURL] = useState(null);
@@ -46,7 +47,7 @@ export default function URLs() {
   return (
     <div className='mt-3'>
       <div className='flex w-screen flex-wrap max-w-3xl m-auto font-light justify-center'>
-        <img src='/bookmark.png' className='object-scale-down m-auto sm:m-0' />
+        <Image src='/bookmark.png' width={125} height={110} className='object-scale-down m-auto sm:m-0' />
         <p className='max-w-lg text-2xl xl:text-3xl grow my-auto ml-8'>
           Create a list of URLs, and share it with your friends with
           <span className='font-bold'> just one link!</span>

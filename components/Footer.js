@@ -1,3 +1,5 @@
+import Image from "next/image"
+
 export default function Footer() {
   return (
     <footer className='flex flex-wrap m-3 justify-around'>
@@ -11,7 +13,7 @@ export default function Footer() {
       </div>
       <div className='max-w-xxs object-contain object-right-bottom mr-0 order-last'>
         <a className='' href='https://ko-fi.com/Y8Y41LNMX'>
-          <img src='/kofi2.png' />
+          <Image src='/kofi2.png' alt="buy me a coffee" width={160} height={40.3} />
         </a>
       </div>
     </footer>
