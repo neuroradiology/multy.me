@@ -1,13 +1,20 @@
 import { createClient } from "@supabase/supabase-js";
 import Layout from "../components/Layout";
-
+import Image from "next/image";
 const List = ({ result }) => {
-  console.log(result);
   if (result.length > 0) {
     return (
       <Layout>
         <div className='bg-panelLight w-4/6 m-auto p-5 rounded-md shadow-sm'>
-          <img src='/bookmark.png' alt='a small page' className="m-auto"/>
+          <div className="m-auto w-32">
+            <Image
+              src='/bookmark.png'
+              alt='Image of a bookmark'
+              className='m-auto'
+              width={125}
+              height={110}
+            />
+          </div>
           <h2 className='text-4xl text-center m-5 font-main uppercase'>
             {result[0].name}
           </h2>
