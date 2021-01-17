@@ -4,6 +4,7 @@ import Clipboard from "react-clipboard.js";
 import Loader from "react-loader-spinner";
 import { toast } from "react-toastify";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function URLs() {
   const [shortURL, setShortURL] = useState(null);
@@ -45,7 +46,7 @@ export default function URLs() {
     }
   };
   return (
-    <div className='mt-3'>
+    <div className=''>
       <div className='flex w-screen flex-wrap max-w-3xl m-auto font-light justify-center'>
         <Image
           src='/bookmark.png'
@@ -58,6 +59,13 @@ export default function URLs() {
           Create a list of URLs, and share it with your friends with
           <span className='font-bold'> just one link!</span>
         </p>
+      </div>
+      <div className=' max-w-md m-auto text-center'>
+        <Link href='https://multy.me/h7t0yT'>
+          <a className='hover:text-blue-600 text-blue-800'>
+            Click here to see an example!
+          </a>
+        </Link>
       </div>
       <div className='flex flex-col justify-center'>
         <div className='bg-panel shadow-md lg:rounded-md w-screen md:w-5/12 3xl:w-4/12 m-auto mt-5 p-8 md:p-8 md:pb-4 pb-4'>
