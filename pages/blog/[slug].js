@@ -21,7 +21,7 @@ export default function Post({ post, morePosts, preview }) {
           <PostTitle>Loading…</PostTitle>
         ) : (
           <>
-            <article className='mb-32'>
+            <article className='mb-32 list-disc'>
               <Head>
                 <title>{post.title} | Multy.me Blog</title>
                 <meta property='og:image' content={post.ogImage.url} />
