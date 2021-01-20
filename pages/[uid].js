@@ -1,12 +1,34 @@
 import { createClient } from "@supabase/supabase-js";
-import Layout from "../components/Layout";
+import Layout from "components/Layout";
 import Image from "next/image";
-const List = ({ result }) => {
+import List from "components/List";
+import Thumbnail from "components/Thumbnail";
+import { useState } from "react";
+import { FiList, FiGrid } from "react-icons/fi";
+
+const ListPage = ({ result }) => {
+  const [display, setDisplay] = useState("list");
   if (result.length > 0) {
     return (
       <Layout>
-        <div className='bg-panelLight w-4/6 m-auto p-5 rounded-md shadow-sm'>
-          <div className="m-auto w-32">
+        <div className='bg-panelLight max-w-6xl m-auto p-5 rounded-md shadow-md'>
+          <div className='flex text-xl'>
+            <div
+              className='p-2 bg-btn-200 hover:bg-btn-100 rounded-sm shadow-md mr-5 cursor-pointer'
+              onClick={() => {
+                setDisplay("list");
+              }}>
+              <FiList className='text-white' />
+            </div>
+            <div
+              className='p-2 bg-btn-200 hover:bg-btn-100 rounded-sm shadow-md mr-5 cursor-pointer'
+              onClick={() => {
+                setDisplay("thumbnail");
+              }}>
+              <FiGrid className='text-white' />
+            </div>
+          </div>
+          <div className='m-auto w-32'>
             <Image
               src='/bookmark.png'
               alt='Image of a bookmark'
@@ -18,19 +40,11 @@ const List = ({ result }) => {
           <h2 className='text-4xl text-center m-5 font-main uppercase'>
             {result[0].name}
           </h2>
-
-          <div className='flex flex-auto flex-shrink flex-wrap flex-row m-auto justify-evenly '>
-            {result[0].urls.map((el, index) => (
-              <div key={index} className='w-auto m-5'>
-                <a
-                  href={el.url}
-                  rel='external nofollow'
-                  className='text-blue-600 hover:text-blue-800'>
-                  {el.url}
-                </a>
-              </div>
-            ))}
-          </div>
+          {display == "list" ? (
+            <List result={result[0]} />
+          ) : (
+            <Thumbnail result={result[0]} />
+          )}
         </div>
       </Layout>
     );
@@ -60,4 +74,4 @@ export async function getServerSideProps(context) {
 
 // Pass data to the page via props
 
-export default List;
+export default ListPage;
