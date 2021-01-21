@@ -4,6 +4,15 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Footer from "./Footer";
 
+const contextClass = {
+  success: "bg-blue-600",
+  error: "bg-red-600",
+  info: "bg-gray-600",
+  warning: "bg-orange-400",
+  default: "bg-indigo-600",
+  dark: "bg-white-600 font-gray-300",
+};
+
 const Layout = (props) => (
   <div className='flex flex-col h-screen justify-between bg-white'>
     <Head>
@@ -33,7 +42,12 @@ const Layout = (props) => (
     </Head>
     <NavBar />
     <div className='mb-auto'>{props.children}</div>
-    <ToastContainer />
+    <ToastContainer
+      toastClassName={({ type }) =>
+        contextClass[type || "default"] +
+        " flex p-5 my-5 min-h-10 rounded-md justify-between overflow-hidden cursor-pointer "
+      }
+    />
     <Footer />
   </div>
 );

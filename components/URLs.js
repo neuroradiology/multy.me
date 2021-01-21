@@ -26,7 +26,7 @@ export default function URLs() {
           toast.error(err.response.data, {
             position: "top-center",
             autoClose: 4000,
-            hideProgressBar: false,
+            hideProgressBar: true,
             closeOnClick: true,
             pauseOnHover: true,
             draggable: true,
@@ -37,7 +37,7 @@ export default function URLs() {
       toast.info("Please enter at least one URL", {
         position: "top-center",
         autoClose: 2000,
-        hideProgressBar: false,
+        hideProgressBar: true,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
@@ -111,9 +111,9 @@ export default function URLs() {
             )}
           </button>
           {shortURL ? (
-            <div className='flex text-base align-middle'>
+            <div className='flex align-middle'>
               <input
-                className='text-black p-2 mr-5'
+                className='text-black p-2 mr-5 my-auto shadow-md text-lg h-12'
                 id='yourURL'
                 size='15'
                 readOnly
@@ -122,17 +122,17 @@ export default function URLs() {
 
               <Clipboard
                 onClick={() => {
-                  toast("📋 Copied to clipboard!", {
+                  toast.success("📋 Copied to clipboard!", {
                     position: "top-center",
-                    autoClose: 2000,
-                    hideProgressBar: false,
+                    autoClose: 2500,
+                    hideProgressBar: true,
                     closeOnClick: true,
                     pauseOnHover: true,
                     draggable: true,
                     progress: undefined,
                   });
                 }}
-                className='border-black border-solid border-0 rounded-md p-2 bg-indigo-900 hover:bg-indigo-600'
+                className='bg-btn-200 hover:bg-btn-100 rounded-sm p-2 text-base mb-5 text-white shadow-sm font-bold mt-4'
                 data-clipboard-text={shortURL}>
                 📋 Copy to clipboard
               </Clipboard>
