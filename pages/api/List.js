@@ -10,6 +10,7 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 export default async function handler(req, res) {
   if (req.method === "POST") {
     if (req.body.urls) {
+      console.time("answer time");
       // Initialize uniqueID generator and create a uid for the list
       const uidGenerator = new ShortUniqueId();
       let uid = uidGenerator();
@@ -20,32 +21,57 @@ export default async function handler(req, res) {
       const result = {};
       let error = false;
 
-      // For each url, check if it's a valid url, and if it is, add it to the validURLS array
-      for await (const el of req.body.urls) {
-        if (validUrl.isWebUri(el)) {
-          await urlMetadata(el)
-            .then((result) => {
-              validURLS.push(result);
-            })
-            .catch((err) => {
-              validURLS.push({ url: el, metadata: null });
-            });
-        } else {
-          if (!el.startsWith("http://") || !el.startsWith("https://")) {
-            const httpString = "http://";
-            const newURL = httpString.concat(el);
-            if (validUrl.isWebUri(newURL)) {
-              await urlMetadata(newURL)
-                .then((result) => {
-                  validURLS.push(result);
-                })
-                .catch((err) => {
-                  validURLS.push({ url: newURL, metadata: null });
+      await Promise.all(
+        req.body.urls.map(async (el) => {
+          if (validUrl.isWebUri(el)) {
+            await urlMetadata(el)
+              .then((result) => {
+                validURLS.push({
+                  ...result,
+                  id: req.body.urls.indexOf(el) + 1,
                 });
+              })
+              .catch((err) => {
+                validURLS.push({
+                  url: el,
+                  metadata: null,
+                  id: req.body.urls.indexOf(el) + 1,
+                });
+              });
+          } else {
+            if (!el.startsWith("http://") || !el.startsWith("https://")) {
+              const httpString = "http://";
+              const newURL = httpString.concat(el);
+              if (validUrl.isWebUri(newURL)) {
+                await urlMetadata(newURL)
+                  .then((result) => {
+                    validURLS.push({
+                      ...result,
+                      id: req.body.urls.indexOf(el) + 1,
+                    });
+                  })
+                  .catch((err) => {
+                    validURLS.push({
+                      url: el,
+                      metadata: null,
+                      id: req.body.urls.indexOf(el) + 1,
+                    });
+                  });
+              }
             }
           }
-        }
-      }
+          console.log(el);
+        })
+      );
+
+      // 3
+      // 2
+      // 1
+
+      console.log("Finished async");
+
+      // For each url, check if it's a valid url, and if it is, add it to the validURLS array
+
       result.validURLS = validURLS;
       result.invalidURLS = invalidURLS;
       result.name = req.body.name ? req.body.name : null;
@@ -85,7 +111,7 @@ export default async function handler(req, res) {
           console.log({ data, error });
         }
       }
-
+      console.timeEnd("answer time");
       if (validURLS.length > 0) {
         res.status(200);
         res.send(result);
