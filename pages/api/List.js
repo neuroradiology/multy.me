@@ -16,6 +16,7 @@ export default async function handler(req, res) {
 
       // Initialize variables
       const validURLS = [];
+      const invalidURLS = [];
       const result = {};
       let error = false;
 
@@ -27,7 +28,8 @@ export default async function handler(req, res) {
               validURLS.push(result);
             })
             .catch((err) => {
-              console.log(err);
+              validURLS.push({ url: el, metadata: null });
+              console.log(`The URL ${el} has not metadata `);
             });
         } else {
           if (!el.startsWith("http://") || !el.startsWith("https://")) {
@@ -39,18 +41,18 @@ export default async function handler(req, res) {
                   validURLS.push(result);
                 })
                 .catch((err) => {
-                  error = true;
-                  res.status(400);
-                  res.send(`The URL ${newURL} is invalid`, { error: 400 });
+                  validURLS.push({ url: newURL, metadata: null });
+                  console.log(`The URL ${el} has not metadata `);
                 });
             }
           }
         }
       }
-      console.log(validURLS);
       result.validURLS = validURLS;
+      result.invalidURLS = invalidURLS;
       result.name = req.body.name ? req.body.name : null;
       result.uid = uid;
+      console.log(result.invalidURLS);
 
       const { data: checkID, checkIDError } = await supabase
         .from("lists")
