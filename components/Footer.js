@@ -4,8 +4,8 @@ export default function Footer() {
   return (
     <footer className='flex flex-wrap m-3 justify-around'>
       <div className='m-auto'>
-        <a href='https://shreyasdeshpande.com/'>
-          Designed by Shreyas Deshpande
+        <a href='https://twitter.com/michael_webdev'>
+          Created by Michael Breyton
         </a>
       </div>
       <div className='flex-grow text-center m-auto'>
