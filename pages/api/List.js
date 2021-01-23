@@ -29,7 +29,6 @@ export default async function handler(req, res) {
             })
             .catch((err) => {
               validURLS.push({ url: el, metadata: null });
-              console.log(`The URL ${el} has not metadata `);
             });
         } else {
           if (!el.startsWith("http://") || !el.startsWith("https://")) {
@@ -42,7 +41,6 @@ export default async function handler(req, res) {
                 })
                 .catch((err) => {
                   validURLS.push({ url: newURL, metadata: null });
-                  console.log(`The URL ${el} has not metadata `);
                 });
             }
           }

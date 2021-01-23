@@ -4,12 +4,16 @@ export default function Thumbnail(props) {
       {props.result.urls.map((el, index) => (
         <div key={index} className='w-80 m-5 p-5'>
           <div>
-            <span className='block text-center text-lg'>
+            <span className='block text-center text-lg break-words'>
               <a
                 href={el.url}
                 rel='external nofollow'
                 className='text-blue-600 hover:text-blue-800 '>
-                {el.title ? el.title : el.url}
+                {el["og:site_name"]
+                  ? el["og:site_name"]
+                  : el.title
+                  ? el.title
+                  : el.url}
               </a>
             </span>
             {el.image ? (
@@ -25,7 +29,7 @@ export default function Thumbnail(props) {
             ) : (
               <img src='/placeholder.png' className='my-5 mx-auto' />
             )}
-            <p>{el.description && el.description}</p>
+            <p className="break-words">{el.description && el.description}</p>
           </div>
         </div>
       ))}

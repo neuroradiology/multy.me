@@ -37,7 +37,7 @@ const ListPage = ({ result }) => {
               height={110}
             />
           </div>
-          <h2 className='text-4xl text-center m-5 font-main uppercase'>
+          <h2 className='text-4xl text-center m-5 font-main uppercase break-words'>
             {result[0].name}
           </h2>
           {display == "list" ? (
