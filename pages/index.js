@@ -1,6 +1,7 @@
+import Landing from "components/Landing";
 import Head from "next/head";
-import Layout from "../components/Layout";
-import URLs from "../components/URLs";
+import Layout from "components/Layout";
+import URLs from "components/URLs";
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
       <div>
         <div className='font-main'>
           <URLs />
+          <Landing/>
         </div>
       </div>
     </Layout>
